@@ -40,7 +40,7 @@ public class categoryGUI extends javax.swing.JFrame {
             while(rowCount-- != 0){
                 table.removeRow(0);
             }
-            ResultSet rs = dbConnect.state.executeQuery("select * from category info");
+            ResultSet rs = dbConnect.state.executeQuery("select * from category");
             
             int startNum = 0;
             while (rs.next()) {
@@ -221,7 +221,7 @@ public class categoryGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(categoryText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add)
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(remove))
                 .addGap(26, 26, 26)
                 .addComponent(ScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)

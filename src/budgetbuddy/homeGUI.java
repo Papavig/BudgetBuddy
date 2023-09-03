@@ -4,6 +4,11 @@
  */
 package budgetbuddy;
 
+import java.awt.HeadlessException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author being
@@ -16,11 +21,16 @@ public class homeGUI extends javax.swing.JFrame {
     public homeGUI() {
         
         initComponents();
+        displayTable();
         
         Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/home.png")));
         Home.setBorderPainted(true);
         Home.setContentAreaFilled(false);
 
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png")));
+        refresh.setBorderPainted(false);
+        refresh.setContentAreaFilled(false);
+        
         Log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png")));
         Log.setBorderPainted(false);
         Log.setContentAreaFilled(false);
@@ -28,6 +38,19 @@ public class homeGUI extends javax.swing.JFrame {
         Category.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png")));
         Category.setBorderPainted(false);
         Category.setContentAreaFilled(false);
+    }
+    
+    private void displayTable(){
+//        javax.swing.table.DefaultTableModel table = (javax.swing.table.DefaultTableModel) homeTable.getModel();
+        try{
+            homeCategory.removeAllItems();
+            ResultSet rs = dbConnect.state.executeQuery("select * from category");
+            while(rs.next()){
+                homeCategory.addItem(rs.getString("category"));
+            }
+        }catch(HeadlessException | SQLException ex){ //Exception handaler
+            JOptionPane.showMessageDialog(null,ex);
+        }
     }
 
     /**
@@ -39,12 +62,11 @@ public class homeGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        date = new com.raven.datechooser.DateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         navPanel = new java.awt.Panel();
         Home = new javax.swing.JButton();
         Log = new javax.swing.JButton();
         Category = new javax.swing.JButton();
-        homeDate = new javax.swing.JTextField();
         homeDateLabel = new javax.swing.JLabel();
         homeAmount = new javax.swing.JTextField();
         homeAmountLabel = new javax.swing.JLabel();
@@ -56,9 +78,8 @@ public class homeGUI extends javax.swing.JFrame {
         homeTable = new javax.swing.JTable();
         spendingLabel = new javax.swing.JLabel();
         totalNumber = new javax.swing.JLabel();
-
-        date.setForeground(new java.awt.Color(102, 102, 102));
-        date.setTextRefernce(homeDate);
+        refresh = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -129,16 +150,10 @@ public class homeGUI extends javax.swing.JFrame {
                     .addGroup(navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Category)
                         .addComponent(Log)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         navPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Category, Home, Log});
-
-        homeDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeDateActionPerformed(evt);
-            }
-        });
 
         homeDateLabel.setText("Date:");
 
@@ -146,7 +161,18 @@ public class homeGUI extends javax.swing.JFrame {
 
         homeAmountLabel1.setText("Amount:");
 
+        homeCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeCategoryActionPerformed(evt);
+            }
+        });
+
         submit.setText("Submit");
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
 
         totalSpendingLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         totalSpendingLabel.setText("Total Spending:");
@@ -176,6 +202,20 @@ public class homeGUI extends javax.swing.JFrame {
         totalNumber.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         totalNumber.setText("0");
 
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png"))); // NOI18N
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Remove");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,23 +230,30 @@ public class homeGUI extends javax.swing.JFrame {
                         .addComponent(totalNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spendingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(homeDate, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(homeDateLabel))
-                                .addGap(31, 31, 31)
+                                    .addComponent(homeDateLabel)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(homeAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(homeAmountLabel1))
                                 .addGap(31, 31, 31)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(homeAmountLabel)
-                                    .addComponent(homeCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(submit)
-                            .addComponent(spendingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(homeCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(submit))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton2)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,33 +264,33 @@ public class homeGUI extends javax.swing.JFrame {
                     .addComponent(homeAmountLabel1)
                     .addComponent(homeAmountLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(homeDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(homeAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(homeCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submit)
-                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(homeAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(homeCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refresh))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(spendingLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalSpendingLabel)
                     .addComponent(totalNumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(navPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {homeAmount, homeCategory, homeDate});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {homeAmount, homeCategory, jDateChooser1});
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void homeDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_homeDateActionPerformed
 
     private void LogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogActionPerformed
 
@@ -270,6 +317,26 @@ public class homeGUI extends javax.swing.JFrame {
         new categoryGUI().setVisible(true);
         new homeGUI().setVisible(false);
     }//GEN-LAST:event_CategoryMouseClicked
+
+    private void homeCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCategoryActionPerformed
+    
+    }//GEN-LAST:event_homeCategoryActionPerformed
+
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        displayTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        try{
+            
+        }catch(Exception ex){ //Exception handaler
+            JOptionPane.showMessageDialog(null,ex);
+        }
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,15 +376,16 @@ public class homeGUI extends javax.swing.JFrame {
     private javax.swing.JButton Home;
     private javax.swing.JButton Log;
     private javax.swing.JScrollPane ScrollPane;
-    private com.raven.datechooser.DateChooser date;
     private javax.swing.JTextField homeAmount;
     private javax.swing.JLabel homeAmountLabel;
     private javax.swing.JLabel homeAmountLabel1;
     private javax.swing.JComboBox<String> homeCategory;
-    private javax.swing.JTextField homeDate;
     private javax.swing.JLabel homeDateLabel;
     private javax.swing.JTable homeTable;
+    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private java.awt.Panel navPanel;
+    private javax.swing.JButton refresh;
     private javax.swing.JLabel spendingLabel;
     private javax.swing.JButton submit;
     private javax.swing.JLabel totalNumber;

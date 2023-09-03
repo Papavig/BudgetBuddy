@@ -55,7 +55,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="categoryText" linkSize="5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="add" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="add" linkSize="5" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="remove" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
