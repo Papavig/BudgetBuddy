@@ -32,10 +32,6 @@ public class homeGUI extends javax.swing.JFrame {
         refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png")));
         refresh.setBorderPainted(false);
         refresh.setContentAreaFilled(false);
-        
-        Log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png")));
-        Log.setBorderPainted(false);
-        Log.setContentAreaFilled(false);
 
         Category.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png")));
         Category.setBorderPainted(false);
@@ -93,7 +89,6 @@ public class homeGUI extends javax.swing.JFrame {
         homeDate = new com.toedter.calendar.JDateChooser();
         navPanel = new java.awt.Panel();
         Home = new javax.swing.JButton();
-        Log = new javax.swing.JButton();
         Category = new javax.swing.JButton();
         homeDateLabel = new javax.swing.JLabel();
         homeAmount = new javax.swing.JTextField();
@@ -129,18 +124,6 @@ public class homeGUI extends javax.swing.JFrame {
             }
         });
 
-        Log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png"))); // NOI18N
-        Log.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LogMousePressed(evt);
-            }
-        });
-        Log.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogActionPerformed(evt);
-            }
-        });
-
         Category.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
         Category.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -158,30 +141,21 @@ public class homeGUI extends javax.swing.JFrame {
         navPanelLayout.setHorizontalGroup(
             navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navPanelLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
-                .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
-                .addComponent(Log)
-                .addGap(47, 47, 47))
+                .addGap(130, 130, 130)
+                .addComponent(Category, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addGap(144, 144, 144)
+                .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addGap(143, 143, 143))
         );
-
-        navPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Category, Home, Log});
-
         navPanelLayout.setVerticalGroup(
             navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Category)
-                        .addComponent(Log)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(Category, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
-
-        navPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Category, Home, Log});
 
         homeDateLabel.setText("Date:");
 
@@ -285,7 +259,7 @@ public class homeGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jButton2)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 21, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,10 +299,6 @@ public class homeGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogActionPerformed
-
-    }//GEN-LAST:event_LogActionPerformed
-
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
        
     }//GEN-LAST:event_HomeActionPerformed
@@ -336,11 +306,6 @@ public class homeGUI extends javax.swing.JFrame {
     private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
         
     }//GEN-LAST:event_CategoryActionPerformed
-
-    private void LogMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogMousePressed
-        new logGUI().setVisible(true);
-        new homeGUI().setVisible(false);
-    }//GEN-LAST:event_LogMousePressed
 
     private void HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseClicked
         new homeGUI().setVisible(true);
@@ -430,7 +395,6 @@ public class homeGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Category;
     private javax.swing.JButton Home;
-    private javax.swing.JButton Log;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JTextField homeAmount;
     private javax.swing.JLabel homeAmountLabel;

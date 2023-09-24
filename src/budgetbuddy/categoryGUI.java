@@ -24,10 +24,6 @@ public class categoryGUI extends javax.swing.JFrame {
         Home.setBorderPainted(true);
         Home.setContentAreaFilled(false);
 
-        Log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png")));
-        Log.setBorderPainted(false);
-        Log.setContentAreaFilled(false);
-
         Category.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png")));
         Category.setBorderPainted(false);
         Category.setContentAreaFilled(false);
@@ -64,7 +60,6 @@ public class categoryGUI extends javax.swing.JFrame {
 
         navPanel = new java.awt.Panel();
         Home = new javax.swing.JButton();
-        Log = new javax.swing.JButton();
         Category = new javax.swing.JButton();
         label = new javax.swing.JLabel();
         ScrollPanel = new javax.swing.JScrollPane();
@@ -97,18 +92,6 @@ public class categoryGUI extends javax.swing.JFrame {
             }
         });
 
-        Log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png"))); // NOI18N
-        Log.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LogMouseClicked(evt);
-            }
-        });
-        Log.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogActionPerformed(evt);
-            }
-        });
-
         Category.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
         Category.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,30 +104,21 @@ public class categoryGUI extends javax.swing.JFrame {
         navPanelLayout.setHorizontalGroup(
             navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navPanelLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(139, 139, 139)
+                .addComponent(Category, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addGap(136, 136, 136)
-                .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
-                .addComponent(Log)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addGap(142, 142, 142))
         );
-
-        navPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Category, Home, Log});
-
         navPanelLayout.setVerticalGroup(
             navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(navPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Category)
-                        .addComponent(Log)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(Category, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
-
-        navPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Category, Home, Log});
 
         label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         label.setText("Category:");
@@ -208,7 +182,7 @@ public class categoryGUI extends javax.swing.JFrame {
                             .addGap(36, 36, 36)
                             .addComponent(remove))
                         .addComponent(ScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {add, remove});
@@ -239,10 +213,6 @@ public class categoryGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HomeActionPerformed
 
-    private void LogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LogActionPerformed
-
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
 
     }//GEN-LAST:event_formMouseClicked
@@ -250,11 +220,6 @@ public class categoryGUI extends javax.swing.JFrame {
     private void HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseClicked
         new homeGUI().setVisible(true);
     }//GEN-LAST:event_HomeMouseClicked
-
-    private void LogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogMouseClicked
-        new logGUI().setVisible(true);
-        new homeGUI().setVisible(false);
-    }//GEN-LAST:event_LogMouseClicked
 
     private void CategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CategoryMouseClicked
         new categoryGUI().setVisible(true);
@@ -324,7 +289,6 @@ public class categoryGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Category;
     private javax.swing.JButton Home;
-    private javax.swing.JButton Log;
     private javax.swing.JScrollPane ScrollPanel;
     private javax.swing.JTable Table;
     private javax.swing.JButton add;
