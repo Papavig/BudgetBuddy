@@ -265,7 +265,6 @@ public class categoryGUI extends javax.swing.JFrame {
         try{
             String category = categoryText.getText();
             dbConnect.state.executeUpdate("insert into category value('"+category+"')");
-            JOptionPane.showMessageDialog(null,"New Category Added!!");
             getEntries();
         }catch(HeadlessException | SQLException e){ //Exception handaler
             JOptionPane.showMessageDialog(null,"Error adding category: " + e.getMessage());

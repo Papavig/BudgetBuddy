@@ -21,7 +21,7 @@ public class dbConnect {
     
     static{
         try{
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/BudgetBuddydb?useSSL=false", "root", "NOOBisPASS");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/BudgetBuddydb?useSSL=false", "root", "");
             state = c.createStatement();
         }catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
